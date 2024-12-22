@@ -12,6 +12,6 @@ int particiona(int *vet, int tam, int ini, int fim);
 
 int quickSort(int *vet, int tam, int ini, int fim);
 
-void heapify(int *vet, int tam);
+void heapify(int *vet, int tam, int i);
 
 void heapSort(int *vet, int tam);

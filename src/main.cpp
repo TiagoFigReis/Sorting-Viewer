@@ -14,9 +14,9 @@ int IsMouseOverButton(Rectangle button)
 int *geraVet(int *vet, int tam)
 {
 
-    for (int i = 1; i <= tam; i++)
+    for (int i = 0; i < tam; i++)
     {
-        vet[i] = i;
+        vet[i] = i + 1;
     }
 
     shuffle(vet, vet + tam, default_random_engine());
@@ -48,6 +48,7 @@ int main()
 
     while (!WindowShouldClose() && !exit)
     {
+        
 
         if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         {
@@ -56,20 +57,26 @@ int main()
                 vet = geraVet(vet, tam);
                 SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
                 SetWindowPosition(0, 0);
+                ToggleFullscreen();
 
                 bubbleSort(vet, tam);
                 ViewOrd(vet, tam);
+                ToggleFullscreen();
                 SetWindowSize(originalWidth, originalHeight);
                 SetWindowPosition((GetMonitorWidth(0) - originalWidth) / 2, (GetMonitorHeight(0) - originalHeight) / 2);
             }
             else if (IsMouseOverButton(seletion))
             {
+                SetTargetFPS(200);
                 vet = geraVet(vet, tam);
                 SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
                 SetWindowPosition(0, 0);
+                ToggleFullscreen();
 
                 seletionSort(vet, tam);
                 ViewOrd(vet, tam);
+                SetTargetFPS(0);
+                ToggleFullscreen();
                 SetWindowSize(originalWidth, originalHeight);
                 SetWindowPosition((GetMonitorWidth(0) - originalWidth) / 2, (GetMonitorHeight(0) - originalHeight) / 2);
             }
@@ -78,42 +85,56 @@ int main()
                 vet = geraVet(vet, tam);
                 SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
                 SetWindowPosition(0, 0);
+                ToggleFullscreen();
 
                 insertionSort(vet, tam);
                 ViewOrd(vet, tam);
+                ToggleFullscreen();
                 SetWindowSize(originalWidth, originalHeight);
                 SetWindowPosition((GetMonitorWidth(0) - originalWidth) / 2, (GetMonitorHeight(0) - originalHeight) / 2);
             }
             else if (IsMouseOverButton(merge))
             {
+                SetTargetFPS(200);
                 vet = geraVet(vet, tam);
                 SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
                 SetWindowPosition(0, 0);
+                ToggleFullscreen();
 
                 mergeSort(vet, tam, 0, tam - 1);
                 ViewOrd(vet, tam);
+                SetTargetFPS(0);
+                ToggleFullscreen();
                 SetWindowSize(originalWidth, originalHeight);
                 SetWindowPosition((GetMonitorWidth(0) - originalWidth) / 2, (GetMonitorHeight(0) - originalHeight) / 2);
             }
             else if (IsMouseOverButton(quick))
             {
+                SetTargetFPS(200);
                 vet = geraVet(vet, tam);
                 SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
                 SetWindowPosition(0, 0);
+                ToggleFullscreen();
 
                 quickSort(vet, tam, 0, tam - 1);
                 ViewOrd(vet, tam);
+                SetTargetFPS(0);
+                ToggleFullscreen();
                 SetWindowSize(originalWidth, originalHeight);
                 SetWindowPosition((GetMonitorWidth(0) - originalWidth) / 2, (GetMonitorHeight(0) - originalHeight) / 2);
             }
             else if (IsMouseOverButton(heap))
             {
+                SetTargetFPS(200);
                 vet = geraVet(vet, tam);
                 SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
                 SetWindowPosition(0, 0);
+                ToggleFullscreen();
 
                 heapSort(vet, tam);
                 ViewOrd(vet, tam);
+                SetTargetFPS(0);
+                ToggleFullscreen();
                 SetWindowSize(originalWidth, originalHeight);
                 SetWindowPosition((GetMonitorWidth(0) - originalWidth) / 2, (GetMonitorHeight(0) - originalHeight) / 2);
             }
@@ -122,6 +143,8 @@ int main()
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
+
+        DrawText("SORTING - VIEWER", 170, 30, 50, DARKGRAY);
 
         DrawText("Escolha um dos Algoritmos de Ordenação", 200, 100, 20, DARKGRAY);
 
@@ -148,6 +171,8 @@ int main()
         DrawRectangleRec(heap, GRAY);
         DrawRectangleLinesEx(heap, 2, DARKGRAY);
         DrawText("Heap Sort", heap.x + 30, heap.y + 10, 20, WHITE);
+
+        DrawText("Desenvolvido por: Tiago de Figueiredo Reis", 10, 470, 20, DARKGRAY);
 
         if (IsMouseOverButton(bubble))
             DrawRectangleLinesEx(bubble, 3, BLACK);
