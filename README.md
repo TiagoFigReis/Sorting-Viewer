@@ -8,6 +8,6 @@ This is a project that allows the visualization of basic sorting algorithms.
 ```bash
 mkdir build
 cd build
-cmake ..
+run cmake .. or cmake .. -G "MinGW Makefiles" -DCMAKE_CXX_COMPILER=g++ to specify that you want to use g++
 cmake --build .
 ./sortViewer
